@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>React_NET_Newsreader</RootNamespace>
+    <UserSecretsId>a9cbadf9-ff2a-484d-8096-9ed93923b8e3</UserSecretsId>
+  </PropertyGroup>
+
+</Project>
