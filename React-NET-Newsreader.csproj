@@ -8,4 +8,8 @@
     <UserSecretsId>a9cbadf9-ff2a-484d-8096-9ed93923b8e3</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NewsAPI" Version="0.7.0" />
+  </ItemGroup>
+
 </Project>
