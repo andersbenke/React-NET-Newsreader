@@ -12,4 +12,10 @@
     <PackageReference Include="Anthropic.SDK" Version="5.10.0" />
   </ItemGroup>
 
+<ItemGroup>
+  <None Update="newsapi_system_prompt.txt">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
 </Project>
