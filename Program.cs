@@ -4,6 +4,7 @@ using Anthropic.SDK.Messaging;
 using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,11 +31,34 @@ app.MapGet("/news", async (IHttpClientFactory factory, string q) =>
 	return Results.Content(body, "application/json");
 });
 
-app.MapGet("/llmCatGen", async (AnthropicClient client, String userPrompt) =>
+app.MapGet("/llmCatGen", async (AnthropicClient client, String userPrompt, int maxTokenUsage) =>
 {
-	var messages = new List<Message> { new Message(RoleType.User, userPrompt) };
+	const int maxTokensPerAPICall = 256;
 
+	if (maxTokenUsage < 0)
+	{
+		return JsonSerializer.Serialize(new 
+		{
+			status = "error",
+			message = $"maxTokenUsage (current value: {maxTokenUsage}) must be a positive integer."
+		});
+	}
+
+	if (maxTokenUsage > maxTokensPerAPICall)
+	{
+		return JsonSerializer.Serialize(new
+		{
+			status = "error",
+			message = $"maxTokenUsage (current value: {maxTokenUsage}) is too high. Set to <= {maxTokensPerAPICall}, please."
+		});
+	}
+
+	var messages = new List<Message> {
+		new Message(RoleType.User, userPrompt)
+	};
+	
 	String pathToPromptFile = Path.Combine(AppContext.BaseDirectory, "newsapi_system_prompt.txt");
+	
 	var parameters = new MessageParameters
 	{
 		Messages = messages,
@@ -42,12 +66,12 @@ app.MapGet("/llmCatGen", async (AnthropicClient client, String userPrompt) =>
 		{
 			new SystemMessage(getSystemPrompt(pathToPromptFile))
 		},
-		MaxTokens = 512,
+		MaxTokens = maxTokensPerAPICall,
 		Model = AnthropicModels.Claude46Sonnet,
 		Temperature = 0m,
 	};
-
-	var raw = (await client.Messages.GetClaudeMessageAsync(parameters)).Message.ToString();
+	
+	String raw = (await client.Messages.GetClaudeMessageAsync(parameters)).Message.ToString();
 	
 	return raw;
 });
