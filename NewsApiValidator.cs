@@ -1,20 +1,23 @@
+/*
+ * LLM Generated validator
+ * */
+
 using System.Globalization;
 
-// Three distinct outcomes the caller must tell apart:
-//   Valid    -> params passed every check; safe to hand to /news.
-//   LlmError -> Claude returned its "error" envelope (couldn't translate);
-//               show LlmMessage to the user. This is expected, not a bug.
-//   Invalid  -> the JSON deserialized but failed a semantic check; a real
-//               problem (bad model output). Inspect Errors.
-public enum QueryOutcome { Valid, LlmError, Invalid }
+public enum QueryOutcome
+{
+    Valid,
+    Invalid,
+    LlmError
+}
 
 public class ValidationResult
 {
     public QueryOutcome Outcome { get; init; }
     public List<string> Errors { get; init; } = new();
-    public string? LlmMessage { get; init; }   // set on LlmError
-    public string? Endpoint { get; init; }     // validated endpoint, on Valid
-    public NewsApiParams? Params { get; init; } // the validated params, on Valid
+	public string? LlmMessage { get; init; }
+    public string? Endpoint { get; init; }
+    public NewsApiParams? Params { get; init; }
 }
 
 public static class NewsApiValidator

@@ -1,3 +1,8 @@
+/*
+ * LLM Generated newsapi data classes
+ * */
+
+
 using System.Text.Json.Serialization;
 
 // The envelope Claude returns:
@@ -25,11 +30,11 @@ public class NewsApiParams
     public string? Q { get; set; }
 
     [JsonPropertyName("sources")]
-    public string? Sources { get; set; }             // comma-separated source IDs
+    public string? Sources { get; set; }
 
-    // ---- /v2/everything only ----
-    [JsonPropertyName("searchIn")]
-    public string? SearchIn { get; set; }            // title,description,content
+	// title,description,content
+	[JsonPropertyName("searchIn")]
+    public string? SearchIn { get; set; }
 
     [JsonPropertyName("domains")]
     public string? Domains { get; set; }
@@ -47,24 +52,27 @@ public class NewsApiParams
     [JsonPropertyName("to")]
     public string? To { get; set; }
 
-    [JsonPropertyName("language")]
-    public string? Language { get; set; }            // ar de en es fr he it nl no pt ru sv ud zh
 
-    [JsonPropertyName("sortBy")]
-    public string? SortBy { get; set; }              // relevancy | popularity | publishedAt
+	/* These are the lang codes possible (I think):
+     * ar de en es fr he it nl no pt ru sv ud zh
+     */
+	[JsonPropertyName("language")]
+    public string? Language { get; set; }
 
-    // ---- /v2/top-headlines only ----
+	// relevancy | popularity | publishedAt
+	[JsonPropertyName("sortBy")]
+    public string? SortBy { get; set; }
+
     [JsonPropertyName("country")]
     public string? Country { get; set; }
 
-    [JsonPropertyName("category")]
-    public string? Category { get; set; }            // business | entertainment | general |
-                                                     // health | science | sports | technology
+	// business,  entertainment,  general,
+    // health, science,  sports,  technology
+	[JsonPropertyName("category")]
+    public string? Category { get; set; }
 
-    // ---- The only true value types in the API ----
-    // Nullable, so an absent field deserializes to null rather than 0.
     [JsonPropertyName("pageSize")]
-    public int? PageSize { get; set; }               // 1..100
+    public int? PageSize { get; set; }
 
     [JsonPropertyName("page")]
     public int? Page { get; set; }

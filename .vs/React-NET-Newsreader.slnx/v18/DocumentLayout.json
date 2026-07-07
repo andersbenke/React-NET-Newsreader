@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|c:\\users\\student-anders\\documents\\lexicon\\kod\\react-net-newsreader\\newsapimodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|solutionrelative:newsapimodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|c:\\users\\student-anders\\documents\\lexicon\\kod\\react-net-newsreader\\newsapivalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|solutionrelative:newsapivalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|c:\\users\\student-anders\\documents\\lexicon\\kod\\react-net-newsreader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1E73E03-2E6B-AB2C-3107-7651E18C14DF}|React-NET-Newsreader.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -39,12 +47,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NewsApiModels.cs",
+              "DocumentMoniker": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\NewsApiModels.cs",
+              "RelativeDocumentMoniker": "NewsApiModels.cs",
+              "ToolTip": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\NewsApiModels.cs",
+              "RelativeToolTip": "NewsApiModels.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAADwv0kAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-07T08:35:30.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NewsApiValidator.cs",
+              "DocumentMoniker": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\NewsApiValidator.cs",
+              "RelativeDocumentMoniker": "NewsApiValidator.cs",
+              "ToolTip": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\NewsApiValidator.cs",
+              "RelativeToolTip": "NewsApiValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-07T08:35:30.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Student-Anders\\Documents\\Lexicon\\Kod\\React-NET-Newsreader\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAwwCEAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T07:15:04.58Z",
               "EditorCaption": ""
