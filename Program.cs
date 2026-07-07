@@ -44,12 +44,12 @@ app.MapGet("/llmCatGen", async (AnthropicClient client, String userPrompt, int m
 		});
 	}
 
-	if (maxTokenUsage > maxTokensPerAPICall)
+	if (maxTokenUsage < maxTokensPerAPICall)
 	{
 		return JsonSerializer.Serialize(new
 		{
 			status = "error",
-			message = $"maxTokenUsage (current value: {maxTokenUsage}) is too high. Set to <= {maxTokensPerAPICall}, please."
+			message = $"maxTokenUsage (current value: {maxTokenUsage}) is too low. Set to >= {maxTokensPerAPICall}, please."
 		});
 	}
 

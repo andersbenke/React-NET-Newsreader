@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-// The envelope Claude returns, matching your system prompt's schema:
+// The envelope Claude returns:
 //   {"status":"success","endpoint":"everything","params":{...}}
 //   {"status":"error","message":"..."}
 public class LlmQueryResult
@@ -14,14 +14,10 @@ public class LlmQueryResult
     [JsonPropertyName("message")]
     public string? Message { get; set; }     // populated only on error
 
-    // "params" is a reserved C# keyword, so the property is named Params
-    // and mapped to the JSON key explicitly.
     [JsonPropertyName("params")]
     public NewsApiParams? Params { get; set; }
 }
 
-// Every NewsAPI query parameter across both endpoints.
-// Unset => null, so you can tell "Claude omitted this" from "Claude sent a value".
 public class NewsApiParams
 {
     // ---- Valid on BOTH endpoints ----
@@ -41,8 +37,12 @@ public class NewsApiParams
     [JsonPropertyName("excludeDomains")]
     public string? ExcludeDomains { get; set; }
 
-    [JsonPropertyName("from")]
-    public string? From { get; set; }                // ISO date string, e.g. "2026-07-01"
+
+	/*
+     * Both dates From and To are per "2026-07-01" format.
+     * */
+	[JsonPropertyName("from")]
+    public string? From { get; set; }
 
     [JsonPropertyName("to")]
     public string? To { get; set; }
