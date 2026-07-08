@@ -1,14 +1,25 @@
-function Nav() {
+function Nav({navItems, activeCategory, clickHandler}) {
+  /*
+  <ul>
+      <li><a href="#" data-name="top" aria-current="page">top</a></li>
+      <li><a href="#" data-name="general">general</a></li>
+      <li><a href="#" data-name="business">business</a></li>
+      <li><a href="#" data-name="technology">technology</a></li>
+      <li><a href="#" data-name="science">science</a></li>
+      <li><a href="#" data-name="health">health</a></li>
+      <li><a href="#" data-name="sports">sports</a></li>
+      <li><a href="#" data-name="entertainment">entertainment</a></li>
+    </ul>
+  </nav>
+  */
   return(<nav aria-label="Categories">
     <ul>
-      <li><a href="#" aria-current="page">top</a></li>
-      <li><a href="#">general</a></li>
-      <li><a href="#">business</a></li>
-      <li><a href="#">technology</a></li>
-      <li><a href="#">science</a></li>
-      <li><a href="#">health</a></li>
-      <li><a href="#">sports</a></li>
-      <li><a href="#">entertainment</a></li>
+      {navItems.map(item =>
+        <li key={item}>
+          <a onClick={clickHandler} href="#" aria-current={item === activeCategory ? "page" : undefined}>{item}</a>
+        </li>
+      )}
     </ul>
-  </nav>);
+    </nav>
+  );
 }
