@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANDERSNEWS — the wire, at compline</title>
+<title>ANDERNEWS — the wire, at compline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,14 +11,25 @@
 </head>
 <body>
 
+<!--
+<div class="topstrip">
+  <div class="wrap">
+    <span>FERIA IV · 2026-07-08</span>
+    <span>STATIC · NO SCRIPTS LOADED</span>
+  </div>
+</div>
+-->
+
 <header class="masthead">
   <div class="wrap">
-    <h1>ANDERS<span>NEWS</span></h1>
+    <h1>ANDER<span>NEWS</span></h1>
     <div class="rule" aria-hidden="true"></div>
     <p>the wire, read in silence</p>
   </div>
 </header>
 
+<div id="root"></div>
+<!--
 <nav aria-label="Categories">
   <ul>
     <li><a href="#" aria-current="page">top</a></li>
@@ -31,6 +42,7 @@
     <li><a href="#">entertainment</a></li>
   </ul>
 </nav>
+-->
 
 <main>
 
@@ -186,5 +198,20 @@
 
   </div>
 </main>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- Components -->
+<script type="text/babel" src="js/components/Nav.jsx"></script>
+<script type="text/babel" src="js/components/App.jsx"></script>
+
+
+<!-- React code -->
+<script type="text/babel">
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+
 </body>
 </html>
