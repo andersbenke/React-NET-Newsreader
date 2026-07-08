@@ -2,12 +2,10 @@
  * LLM Generated newsapi data classes
  * */
 
-
-using System.Text.Json.Serialization;
-
 // The envelope Claude returns:
 //   {"status":"success","endpoint":"everything","params":{...}}
 //   {"status":"error","message":"..."}
+using System.Text.Json.Serialization;
 public class LlmQueryResult
 {
     [JsonPropertyName("status")]

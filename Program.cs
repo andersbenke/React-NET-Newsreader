@@ -1,10 +1,7 @@
 using Anthropic.SDK;
 using Anthropic.SDK.Constants;
 using Anthropic.SDK.Messaging;
-using System;
-using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,22 +55,43 @@ app.MapGet("/llmCatGen", async (AnthropicClient client, String userPrompt, int m
 	};
 	
 	String pathToPromptFile = Path.Combine(AppContext.BaseDirectory, "newsapi_system_prompt.txt");
-	
-	var parameters = new MessageParameters
-	{
-		Messages = messages,
-		System = new List<SystemMessage>
+	String raw;
+	int remaining = maxTokenUsage;        // set once, before the loop
+	const int margin = 32;
+	bool canRetry;
+	bool validNewsApiJson;
+	MessageResponse claudeResponse;
+	do {
+		validNewsApiJson = false;
+
+		var parameters = new MessageParameters
 		{
-			new SystemMessage(getSystemPrompt(pathToPromptFile))
-		},
-		MaxTokens = maxTokensPerAPICall,
-		Model = AnthropicModels.Claude46Sonnet,
-		Temperature = 0m,
-	};
+			Messages = messages,
+			System = new List<SystemMessage>
+			{
+				new SystemMessage(getSystemPrompt(pathToPromptFile))
+			},
+			MaxTokens = maxTokensPerAPICall,
+			Model = AnthropicModels.Claude46Sonnet,
+			Temperature = 0m,
+		};
+
+		// TODO: Can claudeResponse be NULL or other code breaking value?
+		claudeResponse = await client.Messages.GetClaudeMessageAsync(parameters);
+		ValidationResult jsonValidRes = NewsApiValidator.Validate(
+			JsonSerializer.Deserialize<LlmQueryResult>(
+				claudeResponse.Message.ToString()
+			)
+		);
+
+		// Can we afford to query the LLM, if needs be?
+		remaining -= claudeResponse.Usage.InputTokens + claudeResponse.Usage.OutputTokens;
+		int nextRoundCost = claudeResponse.Usage.InputTokens + parameters.MaxTokens + margin;
+		canRetry = remaining >= nextRoundCost;
+	} while (!validNewsApiJson && canRetry);
 	
-	String raw = (await client.Messages.GetClaudeMessageAsync(parameters)).Message.ToString();
-	
-	return raw;
+	// TODO: Return either error or valid JSON. THUS we must fetch it out of the loop above!
+	return "";
 });
 
 app.Run();

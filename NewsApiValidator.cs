@@ -1,7 +1,6 @@
 /*
  * LLM Generated validator
  * */
-
 using System.Globalization;
 
 public enum QueryOutcome

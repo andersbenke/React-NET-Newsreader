@@ -1,0 +1,496 @@
+/* ==========================================================
+   ANDERNEWS — brutalism meets monastery
+   Concrete, bone, and one liturgical red (rubrication).
+   Zero JavaScript. Zero border-radius. Zero shadows.
+   ========================================================== */
+:root {
+  --void:     #0C0B09;   /* the page: unlit stone            */
+  --stone:    #14120E;   /* raised panels                     */
+  --line:     #2B2720;   /* mortar between blocks             */
+  --bone:     #CFC9B8;   /* primary text: bone / old vellum   */
+  --dim:      #7E7869;   /* secondary text                    */
+  --faint:    #55503F;   /* structural annotations            */
+  --rubric:   #A82E1F;   /* the only color: manuscript red    */
+  --rubric-hi:#C7402C;
+
+  --inscription: "Cinzel", serif;          /* carved in stone */
+  --manuscript:  "Source Serif 4", serif;  /* the text itself */
+  --machine:     "IBM Plex Mono", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--manuscript);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+::selection { background: var(--rubric); color: var(--bone); }
+
+a { color: inherit; }
+a:focus-visible,
+button:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--rubric-hi);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: 1060px;
+  margin-inline: auto;
+  padding-inline: 1.1rem;
+}
+
+/* ---------- utilities ---------- */
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+.plainlink { text-decoration: none; overflow-wrap: anywhere; }
+
+/* ---------- recurring voices ---------- */
+.rubric {                       /* small red liturgical labels */
+  font-family: var(--machine);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rubric-hi);
+}
+.meta {
+  font-family: var(--machine);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+.meta b { color: var(--bone); font-weight: 500; }
+
+/* ---------- top strip ---------- */
+.topstrip {
+  border-bottom: 1px solid var(--line);
+}
+.topstrip .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.15rem 1rem;
+  padding-block: 0.55rem;
+  font-family: var(--machine);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+}
+
+/* ---------- masthead ---------- */
+.masthead {
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  padding-block: 2.2rem 1.9rem;   /* deepened at ≥640px */
+}
+.masthead h1 {
+  font-family: var(--inscription);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 7.5vw, 4rem);
+  letter-spacing: 0.12em;      /* widened at ≥640px */
+  text-indent: 0.12em;         /* re-center the letterspaced caps */
+  color: var(--bone);
+  line-height: 1;
+}
+.masthead h1 span { color: var(--rubric-hi); }
+.masthead .rule {
+  width: 42px;
+  height: 1px;
+  background: var(--rubric);
+  margin: 1.3rem auto 0.9rem;
+}
+.masthead p {
+  font-family: var(--machine);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ---------- nav: a wall of cells, mobile-first ----------
+   Phones get a 2-column grid of cells (every category visible,
+   full-width tap targets, 1px mortar between blocks). Wider
+   screens raise the column count; desktop lays the wall out
+   as a single centered course. No horizontal scrolling ever. */
+nav { border-bottom: 1px solid var(--line); }
+nav ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+nav a {
+  display: block;
+  background: var(--void);
+  text-align: center;
+  font-family: var(--machine);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--dim);
+  padding: 0.9rem 0.5rem;
+  transition: color 0.15s;
+}
+nav a:hover { color: var(--bone); }
+nav a[aria-current="page"] {
+  color: var(--bone);
+  box-shadow: inset 0 -2px 0 var(--rubric);
+}
+
+/* ---------- feature ---------- */
+.feature {
+  border-bottom: 1px solid var(--line);
+  padding-block: 2.6rem;
+}
+.feature h2 {
+  font-family: var(--manuscript);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 5.4vw, 2.9rem);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+  margin-top: 0.9rem;
+}
+.feature .standfirst {
+  margin-block: 1.2rem 1rem;
+  color: var(--dim);
+  max-width: 58ch;
+}
+.feature .standfirst::first-letter {
+  font-family: var(--inscription);
+  font-size: 3.1em;
+  line-height: 0.8;
+  float: left;
+  padding: 0.08em 0.14em 0 0;
+  color: var(--rubric-hi);
+}
+/* image slot as an honest placeholder: this design excludes
+   urlToImage on purpose — the panel says where it would go */
+.feature .imgslot {
+  margin-top: 2rem;
+  border: 1px solid var(--line);
+  background: var(--stone);
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.feature .imgslot .pilcrow {
+  font-family: var(--inscription);
+  font-size: 4rem;
+  color: var(--faint);
+  user-select: none;
+}
+.feature .imgslot figcaption {
+  position: absolute;
+  bottom: 0.6rem; left: 0.7rem;
+  font-family: var(--machine);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+/* ---------- scriptorium (AI desk) ---------- */
+.scriptorium {
+  border-bottom: 1px solid var(--line);
+  padding-block: 2.6rem 2.8rem;
+}
+.scriptorium h2 {
+  font-family: var(--inscription);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 3.6vw, 1.6rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-block: 0.9rem 0.7rem;
+}
+.scriptorium > .wrap > p {
+  color: var(--dim);
+  max-width: 60ch;
+}
+.prompt {
+  margin-top: 1.6rem;
+  border: 1px solid var(--line);
+  background: var(--stone);
+  padding: 1rem 1.1rem;
+  display: flex;
+  gap: 0.7rem;
+}
+.prompt .caret {
+  font-family: var(--machine);
+  color: var(--rubric-hi);
+  user-select: none;
+  padding-top: 0.15rem;
+}
+.prompt textarea {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  resize: vertical;
+  min-height: 80px;
+  color: var(--bone);
+  font-family: var(--machine);
+  font-size: 0.86rem;
+  line-height: 1.7;
+  caret-color: var(--rubric-hi);
+}
+.prompt textarea::placeholder { color: var(--faint); }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.btn {
+  font-family: var(--machine);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--bone);
+  border: 1px solid var(--rubric);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn:hover { background: var(--rubric); color: var(--bone); }
+.hint {
+  font-family: var(--machine);
+  font-size: 0.66rem;
+  color: var(--faint);
+}
+.parsed { margin-top: 1.8rem; }
+.parsed .rubric { display: block; margin-bottom: 0.8rem; }
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;                      /* mortar shows through when chips wrap */
+  list-style: none;
+  border: 1px solid var(--line);
+  background: var(--line);
+  width: fit-content;
+  max-width: 100%;
+}
+.chips li {
+  font-family: var(--machine);
+  font-size: 0.74rem;
+  color: var(--bone);
+  background: var(--void);
+  padding: 0.45rem 0.85rem;
+  overflow-wrap: anywhere;
+  flex-grow: 1;                  /* fill each wrapped row edge to edge */
+}
+.chips li.dim {
+  color: var(--faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--rubric);
+}
+
+/* ---------- section deck ---------- */
+.deck { padding-block: 0.4rem 0; }
+section.block {
+  border-bottom: 1px solid var(--line);
+  padding-block: 2.2rem 2.4rem;
+}
+section.block > .wrap > header,
+.scriptorium > .wrap > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  margin-bottom: 1.4rem;
+}
+section.block h2 {
+  font-family: var(--inscription);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+section.block header a {
+  font-family: var(--machine);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+section.block header a:hover { color: var(--dim); }
+
+/* technology: exposed-grid cells, mortar showing through */
+.cards {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.card {
+  background: var(--void);
+  padding: 1.3rem 1.2rem 1.5rem;
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+}
+.card h3 {
+  font-family: var(--manuscript);
+  font-weight: 600;
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { color: var(--rubric-hi); }
+.card p { font-size: 0.9rem; color: var(--dim); }
+
+/* general: title-only wire list */
+.wire { list-style: none; }
+.wire li {
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 0.25rem;
+}
+.wire li:last-child { border-bottom: 0; }
+.wire a {
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.wire a:hover { color: var(--rubric-hi); }
+
+/* popular: roman numerals — rank set in the margin like a psalter */
+.mostread { list-style: none; counter-reset: rank; }
+.mostread li {
+  counter-increment: rank;
+  display: flex;
+  gap: 1.1rem;
+  align-items: baseline;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+.mostread li:last-child { border-bottom: 0; }
+.mostread li::before {
+  content: counter(rank, upper-roman);
+  font-family: var(--inscription);
+  font-size: 0.85rem;
+  color: var(--rubric-hi);
+  min-width: 2.2ch;
+}
+.mostread a { text-decoration: none; font-weight: 600; }
+.mostread a:hover { color: var(--rubric-hi); }
+
+/* saved searches: native details, no JS */
+.briefs details { border-bottom: 1px solid var(--line); }
+.briefs details:last-of-type { border-bottom: 0; }
+.briefs summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  padding-block: 1rem;
+  font-family: var(--machine);
+  font-size: 0.86rem;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+}
+.briefs summary::-webkit-details-marker { display: none; }
+.briefs summary::before {
+  content: "¶";
+  color: var(--faint);
+  margin-right: 0.75rem;
+  transition: color 0.15s;
+}
+.briefs details[open] summary::before { color: var(--rubric-hi); }
+.briefs summary .meta { margin-left: auto; }
+.briefs details p {
+  padding: 0 0 1.2rem 1.6rem;
+  color: var(--dim);
+  font-size: 0.94rem;
+  max-width: 66ch;
+}
+.briefs details p em { color: var(--bone); font-style: italic; }
+
+/* ---------- footer ---------- */
+footer .wrap {
+  padding-block: 2.6rem 3rem;
+  display: grid;
+  gap: 0.55rem;
+  font-family: var(--machine);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+  text-align: center;
+}
+footer strong { color: var(--dim); font-weight: 500; letter-spacing: 0.2em; }
+footer .cross { color: var(--rubric); }
+
+/* On phones General and Popular stack: give the second one a
+   rubric-marked divider so the sections read as separate slabs */
+.twocol > * + * {
+  margin-top: 2.4rem;
+  border-top: 1px solid var(--line);
+  padding-top: 2.2rem;
+}
+
+/* ==========================================================
+   ≥ 640px
+   ========================================================== */
+@media (min-width: 640px) {
+  nav ul { grid-template-columns: repeat(4, 1fr); }
+
+  .masthead { padding-block: 3.2rem 2.6rem; }
+  .masthead h1 { letter-spacing: 0.28em; text-indent: 0.28em; }
+
+  .cards { grid-template-columns: 1fr 1fr; }
+  .feature .grid2 {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 2.4rem;
+    align-items: stretch;
+  }
+  .feature .imgslot { margin-top: 0; min-height: 100%; }
+}
+
+/* ==========================================================
+   ≥ 960px
+   ========================================================== */
+@media (min-width: 960px) {
+  /* the wall becomes a single centered course of cells */
+  nav ul {
+    display: flex;
+    width: max-content;
+    margin-inline: auto;
+    border-inline: 1px solid var(--line);
+  }
+  nav a { padding: 0.85rem 0.8rem; } /* full row must fit at 960px */
+
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .twocol {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3.5rem;
+  }
+  .twocol > * + * {
+    margin-top: 0;
+    border-top: 0;
+    padding-top: 0;
+    border-left: 1px solid var(--line);
+    padding-left: 3.5rem;
+  }
+}

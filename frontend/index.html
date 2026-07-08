@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANDERSNEWS — the wire, at compline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>ANDERS<span>NEWS</span></h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p>the wire, read in silence</p>
+  </div>
+</header>
+
+<nav aria-label="Categories">
+  <ul>
+    <li><a href="#" aria-current="page">top</a></li>
+    <li><a href="#">general</a></li>
+    <li><a href="#">business</a></li>
+    <li><a href="#">technology</a></li>
+    <li><a href="#">science</a></li>
+    <li><a href="#">health</a></li>
+    <li><a href="#">sports</a></li>
+    <li><a href="#">entertainment</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ============ FEATURE ============ -->
+  <article class="feature">
+    <div class="wrap grid2">
+      <div>
+        <span class="rubric">Lectio prima — lead story</span>
+        <h2>European satellite grid goes live, promising rural broadband for the north</h2>
+        <p class="standfirst">After a decade of delays, the constellation's first public beam covers Dalarna, Jämtland and most of the Norrland interior — a region where fiber never made economic sense.</p>
+        <p class="meta"><b>Reuters</b> · 08:42 · 4 min read</p>
+      </div>
+      <figure class="imgslot">
+        <span class="pilcrow" aria-hidden="true">¶</span>
+        <figcaption>urlToImage — excluded by design in this layout</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- ============ SCRIPTORIUM (AI DESK) ============ -->
+  <section class="scriptorium" aria-labelledby="scriptorium-title">
+    <div class="wrap">
+      <header>
+        <span class="rubric">Scriptorium — feed configuration</span>
+        <a href="#" class="meta plainlink">/v2/everything · /v2/top-headlines</a>
+      </header>
+      <h2 id="scriptorium-title">State your intention</h2>
+      <p>Write plainly what you wish to read. The machine transcribes it into NewsAPI categories and search terms — nothing more is asked of you.</p>
+
+      <div class="prompt">
+        <span class="caret" aria-hidden="true">&gt;</span>
+        <label for="ai-query" class="visually-hidden">Describe the news you want</label>
+        <textarea id="ai-query" placeholder="mostly tech and science, some EU politics, no celebrity gossip, and anything about wine is a bonus"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" type="button">Transcribe</button>
+        <span class="hint">// mockup: the button performs no works, only faith</span>
+      </div>
+
+      <div class="parsed">
+        <span class="rubric">Example — a transcribed request</span>
+        <ul class="chips">
+          <li>category=technology</li>
+          <li>category=science</li>
+          <li>q="EU policy" OR wine</li>
+          <li>q=… NOT celebrity</li>
+          <li class="dim">category=entertainment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="deck">
+
+    <!-- Technology: category=technology -->
+    <section class="block" aria-labelledby="tech-title">
+      <div class="wrap">
+        <header>
+          <h2 id="tech-title">Technology</h2>
+          <a href="#">/v2/top-headlines?category=technology</a>
+        </header>
+        <div class="cards">
+          <article class="card">
+            <p class="meta"><b>The Verge</b> · 07:15</p>
+            <h3><a href="#">RISC-V laptops quietly reach price parity with mid-range x86</a></h3>
+            <p>The open ISA's decade of embedded dominance finally spills onto the desk.</p>
+          </article>
+          <article class="card">
+            <p class="meta"><b>SVT Nyheter</b> · 06:58</p>
+            <h3><a href="#">Swedish municipalities pool budgets for shared open-source IT stack</a></h3>
+            <p>Forty-one kommuner sign on; procurement lawyers reportedly thrilled and terrified.</p>
+          </article>
+          <article class="card">
+            <p class="meta"><b>Ars Technica</b> · 05:30</p>
+            <h3><a href="#">Terminal editors see third straight year of user growth</a></h3>
+            <p>Researchers cite "IDE fatigue" and the unreasonable durability of muscle memory.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- General + Popular, two columns on desktop -->
+    <section class="block" aria-label="General and popular">
+      <div class="wrap twocol">
+
+        <div>
+          <header>
+            <h2 id="general-title">General</h2>
+            <a href="#">/v2/top-headlines?category=general</a>
+          </header>
+          <ul class="wire">
+            <li>
+              <a href="#">Coalition talks resume in Berlin after weekend deadlock</a>
+              <span class="meta"><b>AP</b> · 09:01</span>
+            </li>
+            <li>
+              <a href="#">Mediterranean heat dome breaks June records across three countries</a>
+              <span class="meta"><b>BBC</b> · 08:47</span>
+            </li>
+            <li>
+              <a href="#">Baltic undersea cable consortium announces redundancy expansion</a>
+              <span class="meta"><b>Reuters</b> · 08:12</span>
+            </li>
+            <li>
+              <a href="#">UN report: global grain reserves at healthiest level since 2019</a>
+              <span class="meta"><b>AFP</b> · 07:40</span>
+            </li>
+            <li>
+              <a href="#">Archaeologists confirm Roman-era port structures under Marseille marina</a>
+              <span class="meta"><b>The Guardian</b> · 06:15</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <header>
+            <h2 id="read-title">Popular</h2>
+            <a href="#">/v2/everything?sortBy=popularity</a>
+          </header>
+          <ol class="mostread">
+            <li><a href="#">The quiet return of the personal website</a></li>
+            <li><a href="#">Why every Swedish IT department has a server named after someone's uncle</a></li>
+            <li><a href="#">Zinfandel prices climb as California yields dip</a></li>
+            <li><a href="#">HEIC: the image format that launched a thousand support tickets</a></li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Saved searches: /v2/everything keyword queries -->
+    <section class="block briefs" aria-labelledby="briefs-title">
+      <div class="wrap">
+        <header>
+          <h2 id="briefs-title">Saved searches</h2>
+          <a href="#">/v2/everything?q=…</a>
+        </header>
+        <details open>
+          <summary>q=Dalarna <span class="meta">3 new since yesterday</span></summary>
+          <p>Latest match: <em>"County board confirms satellite broadband will reach the final fiber-excluded villages before September."</em> Keyword search is the only way to get region-level Swedish news out of NewsAPI — each saved search maps to one /everything call.</p>
+        </details>
+        <details>
+          <summary>q=(broadband AND Sweden) <span class="meta">boolean operators supported</span></summary>
+          <p>Latest match: <em>"European satellite grid goes live, promising rural broadband for the north."</em> The q parameter takes AND / OR / NOT with brackets, plus quoted phrases for exact match.</p>
+        </details>
+        <details>
+          <summary>domains=svt.se,dn.se <span class="meta">source-scoped feed</span></summary>
+          <p>Latest match: <em>"Swedish municipalities pool budgets for shared open-source IT stack."</em> Restricting by domain is the practical route to a Swedish-language feed, since top-headlines no longer filters on country=se.</p>
+        </details>
+      </div>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>
